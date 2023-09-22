@@ -38,7 +38,11 @@ if [ ! -f "${AWS_S3_AUTHFILE}" ]; then
 fi
 
 echo "==> Mounting S3 Filesystem"
-mkdir -p ${AWS_S3_MOUNTPOINT}
+mkdir -p ${AWS_S3_MOUNTPOINT} || echo "${AWS_S3_MOUNTPOINT} exist"
+umount -f ${AWS_S3_MOUNTPOINT}|| echo "${AWS_S3_MOUNTPOINT} did not mount"
+
+    
+
 
 # s3fs mount command
 s3fs $S3FS_DEBUG $S3FS_ARGS -o passwd_file=${AWS_S3_AUTHFILE} -o url=${AWS_S3_URL} ${AWS_STORAGE_BUCKET_NAME} ${AWS_S3_MOUNTPOINT}
