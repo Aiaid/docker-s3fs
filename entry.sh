@@ -42,6 +42,7 @@ fi
 echo "==> Mounting S3 Filesystem"
 mkdir -p ${AWS_S3_MOUNTPOINT} || echo "${AWS_S3_MOUNTPOINT} exist"
 umount -f ${AWS_S3_MOUNTPOINT}|| echo "${AWS_S3_MOUNTPOINT} did not mount"
+chown ${UID} ${AWS_S3_MOUNTPOINT}
 
     
 
